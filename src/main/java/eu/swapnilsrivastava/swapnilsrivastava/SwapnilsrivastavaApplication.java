@@ -26,6 +26,6 @@ class Producer {
 
 	@EventListener(ApplicationStartedEvent.class)
 	public void generate() {
-		template.send("hello", 1, "HelloSwapnil");
+		template.send("hello-world", 6, "swapnil");
 	}
 }
