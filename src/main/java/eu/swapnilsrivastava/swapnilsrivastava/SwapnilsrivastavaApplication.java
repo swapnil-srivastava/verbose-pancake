@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +27,16 @@ class Producer {
 
 	@EventListener(ApplicationStartedEvent.class)
 	public void generate() {
-		template.send("hello", 8, "swapnil");
+		template.send("hello", 7, "swapnilsrivastava");
 	}
+}
+
+@Component
+class Consumer {
+
+	@KafkaListener(topics = {"hello"}, groupId = "springboot-swapnil")
+	public void consume(String message) {
+		System.out.println("LOADING ..........." + message);
+	}
+
 }
